@@ -1,0 +1,262 @@
+#tfsec:ignore:aws-cloudtrail-enable-at-rest-encryption
+resource "aws_cloudtrail" "org_cloudtrail" {
+  name                          = "${var.customer_prefix}-org-cloudtrail"
+  s3_bucket_name                = aws_s3_bucket.cloudtrail_bucket.bucket
+  include_global_service_events = true
+  is_multi_region_trail         = true
+  is_organization_trail         = true
+  enable_log_file_validation    = true
+  kms_key_id                    = aws_kms_key.cloudtrail_s3_cmk.arn
+  cloud_watch_logs_role_arn     = aws_iam_role.cloud_trail.arn
+  cloud_watch_logs_group_arn    = "${aws_cloudwatch_log_group.cloudtrail_log_group.arn}:*" # CloudTrail requires the Log Stream wildcard
+}
+
+#tfsec:ignore:aws-cloudwatch-log-group-customer-key
+resource "aws_cloudwatch_log_group" "cloudtrail_log_group" {
+  name              = "CloudTrail/AWSOrganizationLogGroup"
+  retention_in_days = 1
+}
+
+resource "aws_iam_role" "cloud_trail" {
+  name = "cloudtrail-cloudwatch-role"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "cloudtrail.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "cloudtrail_cloudwatch_policy" {
+  name = "cloudtrail-cloudwatch-policy"
+  role = aws_iam_role.cloud_trail.id
+
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AWSCloudTrailCreateLogStream",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream"
+            ],
+            "Resource": [
+                "${aws_cloudwatch_log_group.cloudtrail_log_group.arn}:*"
+            ]
+        },
+        {
+            "Sid": "AWSCloudTrailPutLogEvents",
+            "Effect": "Allow",
+            "Action": [
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "${aws_cloudwatch_log_group.cloudtrail_log_group.arn}:*"
+            ]
+        }
+    ]
+}
+EOF
+}
+
+# S3 related resources
+resource "aws_kms_key" "cloudtrail_s3_cmk" {
+  provider = aws.audit
+
+  description             = "For CloudTrail S3 Bucket"
+  deletion_window_in_days = 30
+  multi_region            = true
+  enable_key_rotation     = true
+  policy                  = <<POLICY
+{
+    "Version": "2012-10-17",
+    "Id": "Key-CloudTrail-Org-Policy",
+    "Statement": [
+        {
+            "Sid": "Enable IAM User Permissions",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::${module.audit_account.account_id}:root"
+            },
+            "Action": "kms:*",
+            "Resource": "*"
+        },
+        {
+            "Sid": "Allow CloudTrail to encrypt logs",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "cloudtrail.amazonaws.com"
+            },
+            "Action": [
+                "kms:DescribeKey",
+                "kms:GenerateDataKey*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "Allow access for Key Administrators",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::${module.audit_account.account_id}:role/aws-service-role/cloudtrail.amazonaws.com/AWSServiceRoleForCloudTrail"
+            },
+            "Action": [
+                "kms:Create*",
+                "kms:Describe*",
+                "kms:Enable*",
+                "kms:List*",
+                "kms:Put*",
+                "kms:Update*",
+                "kms:Revoke*",
+                "kms:Disable*",
+                "kms:Get*",
+                "kms:Delete*",
+                "kms:TagResource",
+                "kms:UntagResource",
+                "kms:ScheduleKeyDeletion",
+                "kms:CancelKeyDeletion",
+                "kms:ReplicateKey",
+                "kms:UpdatePrimaryRegion"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "Allow use of the key",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*",
+                "kms:DescribeKey"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:PrincipalOrgID": "${module.aws_organization.aws_org_id}"
+                }
+            }
+        },
+        {
+            "Sid": "Allow attachment of persistent resources",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "kms:CreateGrant",
+                "kms:ListGrants",
+                "kms:RevokeGrant"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:PrincipalOrgID": "${module.aws_organization.aws_org_id}"
+                }
+            }
+        }
+    ]
+}
+POLICY
+}
+
+resource "aws_kms_alias" "cloudtrail_s3_cmk_alias" {
+  provider      = aws.audit
+  name          = "alias/CloudTrailS3"
+  target_key_id = aws_kms_key.cloudtrail_s3_cmk.key_id
+}
+
+resource "aws_s3_bucket" "cloudtrail_bucket" {
+  provider = aws.audit
+
+  bucket = "${var.customer_prefix}-cloudtrail"
+  acl    = "private"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = aws_kms_key.cloudtrail_s3_cmk.arn
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AWSCloudTrailAclCheck",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "cloudtrail.amazonaws.com"
+            },
+            "Action": "s3:GetBucketAcl",
+            "Resource": "arn:aws:s3:::${var.customer_prefix}-cloudtrail"
+        },
+        {
+            "Sid": "AWSCloudTrailWrite",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "cloudtrail.amazonaws.com"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::${var.customer_prefix}-cloudtrail/*",
+            "Condition": {
+                "StringEquals": {
+                    "s3:x-amz-acl": "bucket-owner-full-control"
+                }
+            }
+        },
+        {
+            "Sid": "ForceSSLOnlyAccess",
+            "Effect": "Deny",
+            "Principal": { "AWS": "*" },
+            "Action": "s3:*",
+            "Condition": {
+              "Bool": { "aws:SecureTransport": "false" }
+            },
+            "Resource":"arn:aws:s3:::${var.customer_prefix}-cloudtrail/*"
+        }
+    ]
+}
+EOF
+
+  logging {
+    target_bucket = aws_s3_bucket.cloudtrail_access_logs_bucket.id
+  }
+
+  tags = {
+    Name = "${var.customer_prefix}-cloudtrail"
+  }
+  versioning {
+    enabled = true
+  }
+}
+
+resource "aws_s3_bucket" "cloudtrail_access_logs_bucket" {
+  provider = aws.audit
+
+  bucket = "${var.customer_prefix}-cloudtrail-access-logs"
+  acl    = "log-delivery-write"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+  versioning {
+    enabled = true
+  }
+
+}

@@ -1,0 +1,5 @@
+module "scps" {
+  source         = "git@github.com:robzal/foundation_modules.git//src/modules/scps?ref=v1.1.0"
+  root_ou_id     = module.aws_organization.org_root_id
+  security_ou_id = module.aws_organization.security_ou_id
+}

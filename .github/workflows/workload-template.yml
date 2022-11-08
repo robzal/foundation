@@ -1,0 +1,40 @@
+name: 'workload-template account'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Run Lint Syntax & Security Checks
+    uses: robzal/foundation/.github/workflows/lint-syntax-sec-check.yml@main
+    permissions:
+      id-token: write
+      contents: read
+  plan:
+    if: github.event_name == 'pull_request'
+    uses: robzal/foundation/.github/workflows/deploy_process.yml@main
+    permissions:
+      id-token: write
+      contents: read
+    with:
+      workload_path: src/workload-template
+      terraform_apply: false
+    secrets:
+      ITOC_MODULE_DEPLOY_PRIVATE_KEY: ${{ secrets.ITOC_MODULE_DEPLOY_PRIVATE_KEY }}
+  apply:
+    if: github.event_name != 'pull_request'
+    uses: robzal/foundation/.github/workflows/deploy_process.yml@main
+    permissions:
+      id-token: write
+      contents: read
+    with:
+      workload_path: src/workload-template
+      terraform_apply: true
+    secrets:
+      ITOC_MODULE_DEPLOY_PRIVATE_KEY: ${{ secrets.ITOC_MODULE_DEPLOY_PRIVATE_KEY }}

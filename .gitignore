@@ -1,0 +1,8 @@
+.terraform
+terraform.tfstate
+terraform.tfstate.*
+*.plan
+.terraform.lock.hcl
+.terraform.tfstate.lock.hcl
+output_values.json
+.DS_Store

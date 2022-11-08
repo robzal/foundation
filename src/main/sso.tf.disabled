@@ -1,0 +1,59 @@
+module "sso" {
+  source = "git@github.com:robzal/foundation_modules.git//src/modules/aws_sso?ref=v1.1.0"
+  permission_sets = {
+    AdministratorAccess = {
+      description      = "Provides full access to AWS services and resources.",
+      session_duration = "PT12H",
+      managed_policies = ["arn:aws:iam::aws:policy/AdministratorAccess"],
+      inline_policy    = ""
+    },
+    BillingAccess = {
+      description      = "Provides Billing access to AWS services and resources.",
+      session_duration = "PT12H",
+      managed_policies = ["arn:aws:iam::aws:policy/job-function/Billing"],
+      inline_policy    = ""
+    },
+    DatabaseAccess = {
+      description      = "Provides access to AWS Data services and resources.",
+      session_duration = "PT12H",
+      managed_policies = ["arn:aws:iam::aws:policy/job-function/DatabaseAdministrator"],
+      inline_policy    = ""
+    },
+    DeveloperAccess = {
+      description      = "Provides limited write access to AWS services and resources.",
+      session_duration = "PT12H",
+      managed_policies = ["arn:aws:iam::aws:policy/PowerUserAccess"],
+      inline_policy    = ""
+    },
+    NetworkAccess = {
+      description      = "Provides access to AWS Networking services and resources.",
+      session_duration = "PT12H",
+      managed_policies = ["arn:aws:iam::aws:policy/job-function/NetworkAdministrator"],
+      inline_policy    = ""
+    },
+    ReadOnlyAccess = {
+      description      = "Provides read only access to AWS services and resources.",
+      session_duration = "PT12H",
+      managed_policies = ["arn:aws:iam::aws:policy/ReadOnlyAccess"],
+      inline_policy    = ""
+    },
+    SystemAdministratorAccess = {
+      description      = "Provides general write access to AWS services and resources.",
+      session_duration = "PT12H",
+      managed_policies = ["arn:aws:iam::aws:policy/job-function/SystemAdministrator"],
+      inline_policy    = ""
+    },
+    SecurityHubAccess = {
+      description      = "Provides access to AWS Security Hub services and resources.",
+      session_duration = "PT12H",
+      managed_policies = ["arn:aws:iam::aws:policy/AWSSecurityHubFullAccess"],
+      inline_policy    = ""
+    },
+    SecurityAuditAccess = {
+      description      = "Provides read access to AWS audit and security services and resources.",
+      session_duration = "PT12H",
+      managed_policies = ["arn:aws:iam::aws:policy/SecurityAudit"],
+      inline_policy    = ""
+    },
+  }
+}

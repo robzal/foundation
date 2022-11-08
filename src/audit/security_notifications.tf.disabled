@@ -1,0 +1,11 @@
+module "security_sns_emails" {
+  source          = "git@github.com:robzal/foundation_modules.git//src/modules/sns_email?ref=v1.1.0"
+  sns_topic_name  = "${var.customer_prefix}-security-notifications"
+  email_addresses = var.security_notification_emails
+}
+
+module "security_notifications" {
+  source          = "git@github.com:robzal/foundation_modules.git//src/modules/security_notifications?ref=v1.1.0"
+  sns_topic_arn   = module.security_sns_emails.sns_topic_arn
+  customer_prefix = var.customer_prefix
+}

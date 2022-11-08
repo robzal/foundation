@@ -1,0 +1,14 @@
+# Needs to be enabled explicitly in Main Account
+resource "aws_securityhub_account" "enable_main_account" {}
+
+resource "aws_securityhub_organization_admin_account" "audit_account_admin_delegate" {
+  admin_account_id = module.audit_account.account_id
+}
+
+resource "aws_securityhub_organization_configuration" "org_wide_sechub_config" {
+  provider    = aws.audit
+  auto_enable = true
+  depends_on = [
+    aws_securityhub_organization_admin_account.audit_account_admin_delegate
+  ]
+}

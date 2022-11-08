@@ -1,0 +1,6 @@
+resource "aws_accessanalyzer_analyzer" "org_analyzer" {
+  #  depends_on = [module.aws_organization]
+
+  analyzer_name = "Org-Level-Access-Analyzer"
+  type          = "ORGANIZATION"
+}

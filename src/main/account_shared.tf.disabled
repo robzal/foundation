@@ -1,0 +1,18 @@
+module "shared_account" {
+  source        = "git@github.com:robzal/foundation_modules.git//src/modules/aws_account?ref=v1.1.0"
+  account_name  = "Shared Account"
+  account_email = "worx-itoc-shared@worxdesign.com"
+  parent_id     = module.aws_organization.infrastructure_ou_id
+  aws_region    = var.primary_region
+
+  grant_github_access    = true
+  github_repository_path = "robzal/foundation"
+
+  enable_itoc_read_access             = true
+  enable_itoc_write_access            = true
+  enable_itoc_managed_services_access = true
+
+  billing_contact    = var.billing_contact
+  operations_contact = var.operations_contact
+  security_contact   = var.security_contact
+}

@@ -1,0 +1,30 @@
+name: 'Generate Docs'
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    secrets:
+      ITOC_MODULE_DEPLOY_PRIVATE_KEY:
+        required: true
+
+jobs:
+  run:
+    name: Generate Docs
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure SSH Deploy Key for Modules Repo
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.ITOC_MODULE_DEPLOY_PRIVATE_KEY }}
+
+      - run: ./deploy/generate_docs.sh
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update docs [no ci]

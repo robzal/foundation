@@ -1,0 +1,15 @@
+version: ">= 0.13.0, < 1.0.0"
+output-values:
+  enabled: true
+  from: "/terraform-docs/output_values.json"
+content: |-
+  {{ .Header }}
+  {{ include "README.md" }}
+  {{ .Requirements }}
+  {{ .Inputs }}
+  {{ .Outputs }}
+  {{ .Providers }}
+  {{ .Modules }}
+  {{ .Resources }}
+  {{ include "CHANGELOG.md" }}
+  {{ .Footer }}

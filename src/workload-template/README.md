@@ -1,0 +1,1 @@
+# TEMPLATE_EXAMPLE_WORKLOAD_NAME (ap-southeast-2)

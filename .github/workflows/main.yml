@@ -1,0 +1,36 @@
+name: 'Main Account'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  plan:
+    if: github.event_name == 'pull_request'
+    uses: robzal/foundation/.github/workflows/deploy_process.yml@main
+    permissions:
+      id-token: write
+      contents: read
+    with:
+      workload_path: src/main
+      terraform_apply: false
+      deploy_script: ./deploy/deploy-main-account.sh
+    secrets:
+      ITOC_MODULE_DEPLOY_PRIVATE_KEY: ${{ secrets.ITOC_MODULE_DEPLOY_PRIVATE_KEY }}
+  apply:
+    if: github.event_name != 'pull_request'
+    uses: robzal/foundation/.github/workflows/deploy_process.yml@main
+    permissions:
+      id-token: write
+      contents: read
+    with:
+      workload_path: src/main
+      terraform_apply: true
+      deploy_script: ./deploy/deploy-main-account.sh
+    secrets:
+      ITOC_MODULE_DEPLOY_PRIVATE_KEY: ${{ secrets.ITOC_MODULE_DEPLOY_PRIVATE_KEY }}

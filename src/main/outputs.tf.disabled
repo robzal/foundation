@@ -1,0 +1,39 @@
+output "shared_account_id" {
+  value       = module.shared_account.account_id
+  description = "Shared account number"
+}
+
+output "shared_account_org_admin_role_arn" {
+  value       = module.shared_account.account_org_admin_role
+  description = "Shared account IAM org role"
+}
+
+output "workload_account_ids" {
+  value       = module.aws_organization.workload_accounts
+  description = "Account IDs in Workload OU"
+}
+
+output "security_account_ids" {
+  value       = module.aws_organization.security_accounts
+  description = "Account IDs in Security OU"
+}
+
+output "infrastructure_account_ids" {
+  value       = module.aws_organization.infrastructure_accounts
+  description = "Account IDs in Infrastructure OU"
+}
+
+output "accounts_map" {
+  value       = module.aws_organization.accounts_map
+  description = "List of all accounts and a mapping from account name to AWS Account Id"
+}
+
+output "cross_account_remote_state_role_arn" {
+  value       = module.remote_state.cross_account_remote_state_role_arn
+  description = "AWS IAM Role ARN for accessing the remote state from accounts other than the main account in this AWS Organisation."
+}
+
+output "all_account_ids" {
+  value       = module.aws_organization.all_account_ids
+  description = "List of all AWS Account Ids in this AWS Organisation"
+}

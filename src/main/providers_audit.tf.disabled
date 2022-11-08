@@ -1,0 +1,16 @@
+provider "aws" {
+  alias  = "audit"
+  region = var.primary_region
+  assume_role {
+    role_arn     = module.audit_account.account_org_admin_role
+    session_name = "TerraformFoundation"
+  }
+  default_tags {
+    tags = {
+      Environment = "AuditAccount"
+      Owner       = var.customer_prefix
+      Project     = "AWSAudit"
+      ManagedBy   = "Terraform"
+    }
+  }
+}

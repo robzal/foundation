@@ -1,0 +1,19 @@
+output "audit_account_id" {
+  value       = module.audit_account.account_id
+  description = "Audit account number"
+}
+
+output "audit_account_org_admin_role_arn" {
+  value       = module.audit_account.account_org_admin_role
+  description = "Audit account IAM org role"
+}
+
+output "audit_account_config_role_arn" {
+  value       = aws_iam_role.org_config_role.arn
+  description = "IAM Role ARN of the AWS Config role in the Audit AWS Account."
+}
+
+output "audit_account_config_role_name" {
+  value       = aws_iam_role.org_config_role.name
+  description = "IAM Role name of the AWS Config role in the Audit AWS Account."
+}

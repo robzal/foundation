@@ -1,0 +1,5 @@
+module "global_org_guardduty" {
+  source = "git@github.com:robzal/foundation_modules.git//src/modules/global_org_guardduty?ref=v1.1.0"
+
+  audit_account_id = module.audit_account.account_id
+}

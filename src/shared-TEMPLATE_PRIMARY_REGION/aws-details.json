@@ -1,0 +1,5 @@
+{
+    "apply_role_arn": "arn:aws:iam::TEMPLATE_SHARED_ACCOUNT:role/Foundation-Write",
+    "plan_role_arn": "arn:aws:iam::TEMPLATE_SHARED_ACCOUNT:role/Foundation-ReadOnly",
+    "region": "ap-southeast-2"
+}

@@ -1,0 +1,18 @@
+module "audit_account" {
+  source        = "git@github.com:robzal/foundation_modules.git//src/modules/aws_account?ref=v1.1.0"
+  account_name  = "Audit Account"
+  account_email = "worx-itoc-audit@worxdesign.com"
+  parent_id     = module.aws_organization.security_ou_id
+  aws_region    = var.primary_region
+
+  grant_github_access    = true
+  github_repository_path = "robzal/foundation"
+
+  enable_itoc_read_access             = true
+  enable_itoc_write_access            = true
+  enable_itoc_managed_services_access = true
+
+  billing_contact    = var.billing_contact
+  operations_contact = var.operations_contact
+  security_contact   = var.security_contact
+}

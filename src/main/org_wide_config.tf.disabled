@@ -1,0 +1,53 @@
+resource "aws_organizations_delegated_administrator" "config" {
+  account_id        = module.audit_account.account_id
+  service_principal = "config.amazonaws.com"
+}
+
+resource "aws_organizations_delegated_administrator" "config_multiaccount" {
+  account_id        = module.audit_account.account_id
+  service_principal = "config-multiaccountsetup.amazonaws.com"
+}
+
+# Note: The following resources need to be created here to prevent dependancy issues during initial deploy.
+resource "aws_config_configuration_aggregator" "organization" {
+  provider = aws.audit
+  depends_on = [
+    aws_organizations_delegated_administrator.config,
+    aws_iam_role_policy_attachment.org_config_policy_attach
+  ]
+
+  name = "aws-org-wide-aggregator"
+
+  organization_aggregation_source {
+    all_regions = true
+    role_arn    = aws_iam_role.org_config_role.arn
+  }
+}
+
+resource "aws_iam_role" "org_config_role" {
+  provider = aws.audit
+
+  name               = "${var.customer_prefix}-org-config-role"
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "config.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "org_config_policy_attach" {
+  provider = aws.audit
+
+  role       = aws_iam_role.org_config_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSConfigRoleForOrganizations"
+}

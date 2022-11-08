@@ -1,0 +1,58 @@
+name: 'Deploy Process'
+
+on:
+  workflow_call:
+    inputs:
+      workload_path:
+        required: true
+        type: string
+      terraform_apply:
+        required: false
+        type: boolean
+        default: false
+      deploy_script:
+        required: false
+        type: string
+        default: ./deploy/deploy.sh
+    secrets:
+      ITOC_MODULE_DEPLOY_PRIVATE_KEY:
+        required: true
+
+jobs:
+  run:
+    name: Deploy "${{ inputs.workload_path }}"
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure SSH Deploy Key for Modules Repo
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.ITOC_MODULE_DEPLOY_PRIVATE_KEY }}
+
+      - id: role-to-assume
+        name: Generate AWS Credentials
+        run: ./deploy/get_aws_details.sh ${{ inputs.workload_path }} ${{ inputs.terraform_apply }}
+          
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          role-to-assume: ${{ steps.role-to-assume.outputs.role_arn }}
+          role-session-name: github-actions
+          aws-region: ${{ steps.role-to-assume.outputs.region }}
+
+      - name: Write AWS Credentials to config
+        run: |
+          mkdir ~/.aws/
+          echo "[default]" > ~/.aws/credentials
+          echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
+          echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
+          echo "aws_session_token=$AWS_SESSION_TOKEN" >> ~/.aws/credentials
+          echo "region=$AWS_DEFAULT_REGION" >> ~/.aws/credentials
+          cat ~/.aws/credentials
+      
+      - name: Run Terraform
+        run: ${{ inputs.deploy_script }} ${{ inputs.workload_path }} ${{ inputs.terraform_apply }}
