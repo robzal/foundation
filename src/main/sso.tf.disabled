@@ -1,5 +1,5 @@
 module "sso" {
-  source = "git@github.com:robzal/foundation_modules.git//src/modules/aws_sso?ref=v1.1.0"
+  source = "git@github.com:robzal/foundation-modules.git//src/modules/aws_sso?ref=v1.1.0"
   permission_sets = {
     AdministratorAccess = {
       description      = "Provides full access to AWS services and resources.",

@@ -51,24 +51,24 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_all"></a> [all](#module\_all) | git@github.com:robzal/foundation_modules.git//src/modules/all_accounts | latest |
-| <a name="module_audit_account"></a> [audit\_account](#module\_audit\_account) | git@github.com:robzal/foundation_modules.git//src/modules/aws_account | latest |
-| <a name="module_aws_config"></a> [aws\_config](#module\_aws\_config) | git@github.com:robzal/foundation_modules.git//src/modules/aws_config | latest |
-| <a name="module_aws_organization"></a> [aws\_organization](#module\_aws\_organization) | git@github.com:robzal/foundation_modules.git//src/modules/aws_org | latest |
-| <a name="module_backup_policy_ap-southeast-2_AWS_SERVICES"></a> [backup\_policy\_ap\_southeast\_2](#module\_backup\_policy\_ap\_southeast\_2) | git@github.com:robzal/foundation_modules.git//src/modules/aws_backup_policy | latest |
-| <a name="module_budget_sns"></a> [budget\_sns](#module\_budget\_sns) | git@github.com:robzal/foundation_modules.git//src/modules/sns_email | latest |
-| <a name="module_delete_default_vpcs"></a> [delete\_default\_vpcs](#module\_delete\_default\_vpcs) | git@github.com:robzal/foundation_modules.git//src/modules/delete_default_vpcs | latest |
-| <a name="module_TEMPLATE_EXAMPLE_WORKLOAD_NAME_account"></a> [TEMPLATE_EXAMPLE_WORKLOAD_NAME\_account](#module\_TEMPLATE_EXAMPLE_WORKLOAD_NAME\_account) | git@github.com:robzal/foundation_modules.git//src/modules/aws_account | latest |
-| <a name="module_global_org_guardduty"></a> [global\_org\_guardduty](#module\_global\_org\_guardduty) | git@github.com:robzal/foundation_modules.git//src/modules/global_org_guardduty | latest |
-| <a name="module_global_remote_state"></a> [global\_remote\_state](#module\_global\_remote\_state) | git@github.com:robzal/foundation_modules.git//src/modules/global_remote_state | latest |
-| <a name="module_itoc_access"></a> [itoc\_access](#module\_itoc\_access) | git@github.com:robzal/foundation_modules.git//src/modules/itoc_access | latest |
-| <a name="module_org_change_alarm_sns"></a> [org\_change\_alarm\_sns](#module\_org\_change\_alarm\_sns) | git@github.com:robzal/foundation_modules.git//src/modules/sns_email | latest |
-| <a name="module_prod_canada_central_account"></a> [prod\_canada\_central\_account](#module\_prod\_canada\_central\_account) | git@github.com:robzal/foundation_modules.git//src/modules/aws_account | latest |
-| <a name="module_prod_sydney_account"></a> [prod\_sydney\_account](#module\_prod\_sydney\_account) | git@github.com:robzal/foundation_modules.git//src/modules/aws_account | latest |
-| <a name="module_remote_state"></a> [remote\_state](#module\_remote\_state) | git@github.com:robzal/foundation_modules.git//src/modules/remote_state | latest |
-| <a name="module_scps"></a> [scps](#module\_scps) | git@github.com:robzal/foundation_modules.git//src/modules/scps | latest |
-| <a name="module_shared_account"></a> [shared\_account](#module\_shared\_account) | git@github.com:robzal/foundation_modules.git//src/modules/aws_account | latest |
-| <a name="module_sso"></a> [sso](#module\_sso) | git@github.com:robzal/foundation_modules.git//src/modules/aws_sso | latest |
+| <a name="module_all"></a> [all](#module\_all) | git@github.com:robzal/foundation-modules.git//src/modules/all_accounts | latest |
+| <a name="module_audit_account"></a> [audit\_account](#module\_audit\_account) | git@github.com:robzal/foundation-modules.git//src/modules/aws_account | latest |
+| <a name="module_aws_config"></a> [aws\_config](#module\_aws\_config) | git@github.com:robzal/foundation-modules.git//src/modules/aws_config | latest |
+| <a name="module_aws_organization"></a> [aws\_organization](#module\_aws\_organization) | git@github.com:robzal/foundation-modules.git//src/modules/aws_org | latest |
+| <a name="module_backup_policy_ap-southeast-2_AWS_SERVICES"></a> [backup\_policy\_ap\_southeast\_2](#module\_backup\_policy\_ap\_southeast\_2) | git@github.com:robzal/foundation-modules.git//src/modules/aws_backup_policy | latest |
+| <a name="module_budget_sns"></a> [budget\_sns](#module\_budget\_sns) | git@github.com:robzal/foundation-modules.git//src/modules/sns_email | latest |
+| <a name="module_delete_default_vpcs"></a> [delete\_default\_vpcs](#module\_delete\_default\_vpcs) | git@github.com:robzal/foundation-modules.git//src/modules/delete_default_vpcs | latest |
+| <a name="module_TEMPLATE_EXAMPLE_WORKLOAD_NAME_account"></a> [TEMPLATE_EXAMPLE_WORKLOAD_NAME\_account](#module\_TEMPLATE_EXAMPLE_WORKLOAD_NAME\_account) | git@github.com:robzal/foundation-modules.git//src/modules/aws_account | latest |
+| <a name="module_global_org_guardduty"></a> [global\_org\_guardduty](#module\_global\_org\_guardduty) | git@github.com:robzal/foundation-modules.git//src/modules/global_org_guardduty | latest |
+| <a name="module_global_remote_state"></a> [global\_remote\_state](#module\_global\_remote\_state) | git@github.com:robzal/foundation-modules.git//src/modules/global_remote_state | latest |
+| <a name="module_itoc_access"></a> [itoc\_access](#module\_itoc\_access) | git@github.com:robzal/foundation-modules.git//src/modules/itoc_access | latest |
+| <a name="module_org_change_alarm_sns"></a> [org\_change\_alarm\_sns](#module\_org\_change\_alarm\_sns) | git@github.com:robzal/foundation-modules.git//src/modules/sns_email | latest |
+| <a name="module_prod_canada_central_account"></a> [prod\_canada\_central\_account](#module\_prod\_canada\_central\_account) | git@github.com:robzal/foundation-modules.git//src/modules/aws_account | latest |
+| <a name="module_prod_sydney_account"></a> [prod\_sydney\_account](#module\_prod\_sydney\_account) | git@github.com:robzal/foundation-modules.git//src/modules/aws_account | latest |
+| <a name="module_remote_state"></a> [remote\_state](#module\_remote\_state) | git@github.com:robzal/foundation-modules.git//src/modules/remote_state | latest |
+| <a name="module_scps"></a> [scps](#module\_scps) | git@github.com:robzal/foundation-modules.git//src/modules/scps | latest |
+| <a name="module_shared_account"></a> [shared\_account](#module\_shared\_account) | git@github.com:robzal/foundation-modules.git//src/modules/aws_account | latest |
+| <a name="module_sso"></a> [sso](#module\_sso) | git@github.com:robzal/foundation-modules.git//src/modules/aws_sso | latest |
 ## Resources
 
 | Name | Type |

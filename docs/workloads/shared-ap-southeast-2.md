@@ -37,12 +37,12 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_all"></a> [all](#module\_all) | git@github.com:robzal/foundation_modules.git//src/modules/all_accounts | latest |
-| <a name="module_aws_backup_org_member"></a> [aws\_backup\_org\_member](#module\_aws\_backup\_org\_member) | git@github.com:robzal/foundation_modules.git//src/modules/aws_backup_member | latest |
-| <a name="module_aws_config"></a> [aws\_config](#module\_aws\_config) | git@github.com:robzal/foundation_modules.git//src/modules/aws_config | latest |
+| <a name="module_all"></a> [all](#module\_all) | git@github.com:robzal/foundation-modules.git//src/modules/all_accounts | latest |
+| <a name="module_aws_backup_org_member"></a> [aws\_backup\_org\_member](#module\_aws\_backup\_org\_member) | git@github.com:robzal/foundation-modules.git//src/modules/aws_backup_member | latest |
+| <a name="module_aws_config"></a> [aws\_config](#module\_aws\_config) | git@github.com:robzal/foundation-modules.git//src/modules/aws_config | latest |
 | <a name="module_start_ec2_instance"></a> [start\_ec2\_instance](#module\_start\_ec2\_instance) | diodonfrost/lambda-scheduler-stop-start/aws | 3.1.3 |
 | <a name="module_stop_ec2_instance"></a> [stop\_ec2\_instance](#module\_stop\_ec2\_instance) | diodonfrost/lambda-scheduler-stop-start/aws | 3.1.3 |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | git@github.com:robzal/foundation_modules.git//src/modules/vpc | latest |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | git@github.com:robzal/foundation-modules.git//src/modules/vpc | latest |
 ## Resources
 
 | Name | Type |

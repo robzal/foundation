@@ -1,5 +1,5 @@
 module "audit_account" {
-  source        = "git@github.com:robzal/foundation_modules.git//src/modules/aws_account?ref=v1.1.0"
+  source        = "git@github.com:robzal/foundation-modules.git//src/modules/aws_account?ref=v1.1.0"
   account_name  = "Audit Account"
   account_email = "worx-itoc-audit@worxdesign.com"
   parent_id     = module.aws_organization.security_ou_id

@@ -1,5 +1,5 @@
 module "backup_policy_ap-southeast-2_AWS_SERVICES" {
-  source               = "git@github.com:robzal/foundation_modules.git//src/modules/aws_backup_policy?ref=v1.1.0"
+  source               = "git@github.com:robzal/foundation-modules.git//src/modules/aws_backup_policy?ref=v1.1.0"
   region               = var.primary_region
   organisational_units = [module.aws_organization.workload_ou_id, module.aws_organization.infrastructure_ou_id]
 }

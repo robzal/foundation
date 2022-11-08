@@ -1,5 +1,5 @@
 module "vpc" {
-  source         = "git@github.com:robzal/foundation_modules.git//src/modules/vpc?ref=v1.1.0"
+  source         = "git@github.com:robzal/foundation-modules.git//src/modules/vpc?ref=v1.1.0"
   naming_prefix  = "${var.customer_prefix}-TEMPLATE_EXAMPLE_WORKLOAD_NAME"
   network_prefix = "TEMPLATE_EXAMPLE_WORKLOAD_IP"
   number_of_ngws = 1

@@ -1,5 +1,5 @@
 module "aws_organization" {
-  source = "git@github.com:robzal/foundation_modules.git//src/modules/aws_org?ref=v1.1.0"
+  source = "git@github.com:robzal/foundation-modules.git//src/modules/aws_org?ref=v1.1.0"
 }
 
 # https://www.trendmicro.com/cloudoneconformity/knowledge-base/aws/CloudWatchLogs/organizations-changes-alarm.html#E1Xhluwg
@@ -20,7 +20,7 @@ resource "aws_cloudwatch_log_metric_filter" "org_changes" {
 
 module "org_change_alarm_sns" {
   count  = var.security_contact["email"] == "" ? 0 : 1
-  source = "git@github.com:robzal/foundation_modules.git//src/modules/sns_email?ref=v1.1.0"
+  source = "git@github.com:robzal/foundation-modules.git//src/modules/sns_email?ref=v1.1.0"
 
   sns_topic_name  = "cw-alarm-org-change"
   email_addresses = [var.security_contact["email"]]

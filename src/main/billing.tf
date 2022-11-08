@@ -38,7 +38,7 @@ resource "aws_budgets_budget" "all_accounts_budget" {
 }
 
 module "budget_sns" {
-  source = "git@github.com:robzal/foundation_modules.git//src/modules/sns_email?ref=v1.1.0"
+  source = "git@github.com:robzal/foundation-modules.git//src/modules/sns_email?ref=v1.1.0"
 
   sns_topic_name  = "aws-budget"
   email_addresses = var.aws_account_budget_notification_email_address

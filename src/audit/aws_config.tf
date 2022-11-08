@@ -1,5 +1,5 @@
 module "aws_config" {
-  source = "git@github.com:robzal/foundation_modules.git//src/modules/aws_config?ref=v1.1.0"
+  source = "git@github.com:robzal/foundation-modules.git//src/modules/aws_config?ref=v1.1.0"
 
   audit_account_id                = "self"
   customer_prefix                 = var.customer_prefix

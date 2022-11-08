@@ -29,10 +29,10 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_all"></a> [all](#module\_all) | git@github.com:robzal/foundation_modules.git//src/modules/all_accounts | latest |
-| <a name="module_aws_config"></a> [aws\_config](#module\_aws\_config) | git@github.com:robzal/foundation_modules.git//src/modules/aws_config | latest |
-| <a name="module_security_notifications"></a> [security\_notifications](#module\_security\_notifications) | git@github.com:robzal/foundation_modules.git//src/modules/security_notifications | latest |
-| <a name="module_security_sns_emails"></a> [security\_sns\_emails](#module\_security\_sns\_emails) | git@github.com:robzal/foundation_modules.git//src/modules/sns_email | latest |
+| <a name="module_all"></a> [all](#module\_all) | git@github.com:robzal/foundation-modules.git//src/modules/all_accounts | latest |
+| <a name="module_aws_config"></a> [aws\_config](#module\_aws\_config) | git@github.com:robzal/foundation-modules.git//src/modules/aws_config | latest |
+| <a name="module_security_notifications"></a> [security\_notifications](#module\_security\_notifications) | git@github.com:robzal/foundation-modules.git//src/modules/security_notifications | latest |
+| <a name="module_security_sns_emails"></a> [security\_sns\_emails](#module\_security\_sns\_emails) | git@github.com:robzal/foundation-modules.git//src/modules/sns_email | latest |
 ## Resources
 
 | Name | Type |
