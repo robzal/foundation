@@ -10,14 +10,14 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_customer_prefix"></a> [customer\_prefix](#input\_customer\_prefix) | Prefix for all resources with the customer name. Should be lower case characters starting with an alpha character and be consistent across the environment. Only `-` as a special character. | `string` | `"worxdesign"` | no |
+| <a name="input_customer_prefix"></a> [customer\_prefix](#input\_customer\_prefix) | Prefix for all resources with the customer name. Should be lower case characters starting with an alpha character and be consistent across the environment. Only `-` as a special character. | `string` | `"TEMPLATE_CUSTOMER_PREFIX"` | no |
 | <a name="input_security_notification_emails"></a> [security\_notification\_emails](#input\_security\_notification\_emails) | List of email addresses to email security issues to. | `list(string)` | n/a | yes |
 ## Outputs
 
 | Name | Description | Value | Sensitive |
 |------|-------------|-------|:---------:|
 | <a name="output_account_id"></a> [account\_id](#output\_account\_id) | Account Id for this account | `"TEMPLATE_AUDIT_ACCOUNT"` | no |
-| <a name="output_central_flow_log_bucket_arn"></a> [central\_flow\_log\_bucket\_arn](#output\_central\_flow\_log\_bucket\_arn) | ARN of central flow log bucket | `"arn:aws:s3:::worxdesign-central-flow-logs"` | no |
+| <a name="output_central_flow_log_bucket_arn"></a> [central\_flow\_log\_bucket\_arn](#output\_central\_flow\_log\_bucket\_arn) | ARN of central flow log bucket | `"arn:aws:s3:::TEMPLATE_CUSTOMER_PREFIX-central-flow-logs"` | no |
 | <a name="output_region"></a> [region](#output\_region) | Region name for this account | `"ap-southeast-2"` | no |
 ## Providers
 

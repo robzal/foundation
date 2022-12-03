@@ -1,0 +1,37 @@
+Value,Actual value,Example,Provided by Customer,Description,Done
+TEMPLATE_CUSTOMER_GIT_SYSTEM,,"GitHub: git@github.com  Azure: git::ssh://git@ssh.dev.azure.com/v3",Yes/Derived,User+host of SSH Git repo - for GitHub customers it will be the example,FALSE
+TEMPLATE_MODULE_REPO_PATH,,customerGitOrg/customer_modules.git,Yes/Derived,Path in Git Org to Foundations Module repo -  .git appended if not specifying full proto in GIT_SYSTEM - e.g. GitHub ,FALSE
+TEMPLATE_MAIN_ACCOUNT,,1234567891,Yes,Numerical AWS Account ID of new Management Account (created by customer),FALSE
+TEMPLATE_AUDIT_ACCOUNT_EMAIL,,aws+audit@customer.com,Yes,Unique email for Audit AWS Account (provided by customer),FALSE
+TEMPLATE_SHARED_ACCOUNT_EMAIL,,aws+shared@customer.com,Yes,Unique email for Audit AWS Account (provided by customer),FALSE
+TEMPLATE_CUSTOMER_PREFIX,,customercorp,Yes,Global prefix for all Customer resources,FALSE
+TEMPLATE_GITHUB_REPO_ACCESS_PATH,,customerGitOrg/customer_infra,Yes/Derived,"Git path to Infra repo - needed to grant access for Actions, however still needed other things",FALSE
+TEMPLATE_GRANT_GITHUB_ACCESS,,TRUE,Yes/Derived,Grant AWS Access to GitHub actions,FALSE
+TEMPLATE_BILLING_EMAIL,,aws+billing@customer.com,Yes,AWS Alt contact - Billing,FALSE
+TEMPLATE_BILLING_PHONE_NUMBER,,1300123123,Yes,AWS Alt contact - Billing,FALSE
+TEMPLATE_BILLING_NAME,,Joe Glenmorangie,Yes,AWS Alt contact - Billing,FALSE
+TEMPLATE_BILLING_TITLE,,CFO,Yes,AWS Alt contact - Billing,FALSE
+TEMPLATE_OPS_EMAIL,,accounts@customer.com,Yes,AWS Alt contact - Ops,FALSE
+TEMPLATE_OPS_PHONE_NUMBER,,1300123123,Yes,AWS Alt contact - Ops,FALSE
+TEMPLATE_OPS_NAME,,Mary Pulteney,Yes,AWS Alt contact - Ops,FALSE
+TEMPLATE_OPS_TITLE,,Ops Manager,Yes,AWS Alt contact - Ops,FALSE
+TEMPLATE_SECURITY_EMAIL,,security@customer.com,Yes,AWS Alt contact - Security,FALSE
+TEMPLATE_SECURITY_PHONE_NUMBER,,1300123123,Yes,AWS Alt contact - Security,FALSE
+TEMPLATE_SECURITY_NAME,,James Tullibardine,Yes,AWS Alt contact - Security,FALSE
+TEMPLATE_SECURITY_TITLE,,CISO,Yes,AWS Alt contact - Security,FALSE
+TEMPLATE_PRIMARY_REGION,,ap-southeast-2,Yes,Primary AWS Region,FALSE
+TEMPLATE_PRIMARY_REGION_AWS_SERVICES,,ap_southeast_2,Yes,Region name for AWS services like AWS Backup - Note: must be with underscores,FALSE
+TEMPLATE_SECONDARY_REGION,,eu-west-1,Yes,If the customer doesn't have a multi-region foundation - then replace with a fully empty string,FALSE
+TEMPLATE_SECURITY_NOTIFICATION_EMAIL,,aws+security@customer.com,Yes,AWS Security alerts email,FALSE
+TEMPLATE_BUDGET_NOTIFICATION_EMAIL,,aws+budget@customer.com,Yes,AWS Budget alerts email,FALSE
+TEMPLATE_SHARED_VPC_IP,,10,Yes,First two octets of Shared VPC CIDR,FALSE
+
+Known Mid Rollout,,,,,FALSE
+TEMPLATE_AUDIT_ACCOUNT,,1.23457E+12,No,Only known after Audit account creation by Main account Terraform workspace,FALSE
+TEMPLATE_SHARED_ACCOUNT,,1.23457E+12,No,Only known after Shared account creation by Main account Terraform workspace,FALSE
+
+Workload Account Specific Template,,,,,
+TEMPLATE_EXAMPLE_WORKLOAD_ACCOUNT,,1.23457E+12,No,Only known after Shared account creation by Main account Terraform workspace,FALSE
+TEMPLATE_EXAMPLE_WORKLOAD_IP,,10.1,Yes,First two octets for this account's VPC CIDR,FALSE
+GitHub Action: src/workload-template,,src/development-ap-southeast-2,Yes/Derived,Directory path to this account's first terraform workspace dir - should be of formate account_name-aws_region,FALSE
+TEMPLATE_EXAMPLE_WORKLOAD_NAME,,"development; staging; production,...",Yes,Name per individual workload,FALSE

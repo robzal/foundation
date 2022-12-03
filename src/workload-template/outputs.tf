@@ -29,6 +29,6 @@ output "vpc_cidr" {
 
 
 # output "peering_connector_to_shared_ap_souteast_2_id" {
-#  value       = aws_vpc_peering_connection.peer_to_shared_ap-southeast-2_AWS_SERVICES_vpc.id
+#  value       = aws_vpc_peering_connection.peer_to_shared_ap_southeast_2_vpc.id
 #  description = "AWS VPC Peering connector to Shared ap-southeast-2 ID"
 #}

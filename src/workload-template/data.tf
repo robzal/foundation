@@ -11,7 +11,7 @@ data "terraform_remote_state" "audit_account" {
     key            = "audit.tfstate"
     region         = "ap-southeast-2"
     dynamodb_table = "${var.customer_prefix}-tfstate-ap-southeast-2"
-    role_arn       = "arn:aws:iam::329571102651:role/terraform-cross-account-remote-state"
+    role_arn       = "arn:aws:iam::TEMPLATE_MAIN_ACCOUNT:role/terraform-cross-account-remote-state"
   }
 }
 
@@ -23,7 +23,7 @@ data "terraform_remote_state" "main_account" {
     key            = "main.tf"
     region         = "ap-southeast-2"
     dynamodb_table = "${var.customer_prefix}-tfstate-ap-southeast-2"
-    role_arn       = "arn:aws:iam::329571102651:role/terraform-cross-account-remote-state"
+    role_arn       = "arn:aws:iam::TEMPLATE_MAIN_ACCOUNT:role/terraform-cross-account-remote-state"
   }
 }
 
@@ -36,7 +36,7 @@ data "terraform_remote_state" "main_account" {
 #     key            = "shared-ap-southeast-2.tfstate"
 #     region         = "ap-southeast-2"
 #     dynamodb_table = "${var.customer_prefix}-tfstate-ap-southeast-2"
-#     role_arn       = "arn:aws:iam::329571102651:role/terraform-cross-account-remote-state"
+#     role_arn       = "arn:aws:iam::TEMPLATE_MAIN_ACCOUNT:role/terraform-cross-account-remote-state"
 #   }
 # }
 

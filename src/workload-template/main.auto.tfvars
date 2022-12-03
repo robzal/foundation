@@ -1,1 +1,1 @@
-customer_prefix = "worxdesign"
+customer_prefix = "TEMPLATE_CUSTOMER_PREFIX"

@@ -1,7 +1,7 @@
 module "audit_account" {
   source        = "git@github.com:robzal/foundation-modules.git//src/modules/aws_account?ref=v1.1.0"
   account_name  = "Audit Account"
-  account_email = "worx-itoc-audit@worxdesign.com"
+  account_email = "TEMPLATE_AUDIT_ACCOUNT_EMAIL"
   parent_id     = module.aws_organization.security_ou_id
   aws_region    = var.primary_region
 

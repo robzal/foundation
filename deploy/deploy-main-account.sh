@@ -6,7 +6,7 @@ if [ -f ./deploy/common.sh ]; then
   source ./deploy/common.sh 
 fi
 
-S3_BUCKET='worxdesign-tfstate-ap-southeast-2'
+S3_BUCKET='TEMPLATE_CUSTOMER_PREFIX-tfstate-ap-southeast-2'
 
 echo -e "${GREEN_FG}Checking if Terraform remote state bootstrap needed${COLOUR_RESET}"
 if aws s3api head-bucket --bucket "$S3_BUCKET" 2>/dev/null; then
@@ -68,3 +68,7 @@ if [ "$2" == "true" ]; then
     terraform apply -auto-approve
 fi
 
+if [ "$2" == "destroy" ]; then
+    echo -e "${GREEN_BG}Running Terraform Destroy...${COLOUR_RESET}"
+    terraform destroy -auto-approve
+fi

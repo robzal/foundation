@@ -1,7 +1,7 @@
 module "shared_account" {
   source        = "git@github.com:robzal/foundation-modules.git//src/modules/aws_account?ref=v1.1.0"
   account_name  = "Shared Account"
-  account_email = "worx-itoc-shared@worxdesign.com"
+  account_email = "TEMPLATE_SHARED_ACCOUNT_EMAIL"
   parent_id     = module.aws_organization.infrastructure_ou_id
   aws_region    = var.primary_region
 
