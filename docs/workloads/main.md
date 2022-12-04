@@ -55,7 +55,7 @@
 | <a name="module_audit_account"></a> [audit\_account](#module\_audit\_account) | git@github.com:robzal/foundation-modules.git//src/modules/aws_account | latest |
 | <a name="module_aws_config"></a> [aws\_config](#module\_aws\_config) | git@github.com:robzal/foundation-modules.git//src/modules/aws_config | latest |
 | <a name="module_aws_organization"></a> [aws\_organization](#module\_aws\_organization) | git@github.com:robzal/foundation-modules.git//src/modules/aws_org | latest |
-| <a name="module_backup_policy_ap-southeast-2_AWS_SERVICES"></a> [backup\_policy\_ap\_southeast\_2](#module\_backup\_policy\_ap\_southeast\_2) | git@github.com:robzal/foundation-modules.git//src/modules/aws_backup_policy | latest |
+| <a name="module_backup_policy_ap_southeast_2"></a> [backup\_policy\_ap\_southeast\_2](#module\_backup\_policy\_ap\_southeast\_2) | git@github.com:robzal/foundation-modules.git//src/modules/aws_backup_policy | latest |
 | <a name="module_budget_sns"></a> [budget\_sns](#module\_budget\_sns) | git@github.com:robzal/foundation-modules.git//src/modules/sns_email | latest |
 | <a name="module_delete_default_vpcs"></a> [delete\_default\_vpcs](#module\_delete\_default\_vpcs) | git@github.com:robzal/foundation-modules.git//src/modules/delete_default_vpcs | latest |
 | <a name="module_TEMPLATE_EXAMPLE_WORKLOAD_NAME_account"></a> [TEMPLATE_EXAMPLE_WORKLOAD_NAME\_account](#module\_TEMPLATE_EXAMPLE_WORKLOAD_NAME\_account) | git@github.com:robzal/foundation-modules.git//src/modules/aws_account | latest |
